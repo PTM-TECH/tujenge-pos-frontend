@@ -63,5 +63,8 @@ api.interceptors.response.use(
     }
   }
 );
+if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_USE_MOCKS === "true") {
+  import("@/mocks").then(({ enableMocks }) => enableMocks(api));
+}
 
 export default api;
