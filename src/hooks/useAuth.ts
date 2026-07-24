@@ -25,7 +25,9 @@ export function useAuth() {
     const { data } = await api.post<{ accessToken: string }>("/auth/verify-otp", { code });
     setAccessToken(data.accessToken);
   }
-
+  async function forgotPassword(email: string) {
+    await api.post("/auth/forgot-password", { email });
+  }
   async function logout() {
     try {
       await api.post("/auth/logout");
@@ -45,6 +47,7 @@ export function useAuth() {
     isAuthenticated: Boolean(accessToken && user),
     login,
     verifyOtp,
+    forgotPassword,
     logout,
     redirectToDefaultRoute,
   };
