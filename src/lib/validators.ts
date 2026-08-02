@@ -31,3 +31,46 @@ export const taxRuleSchema = z.object({
   active: z.boolean().default(true),
 });
 export type TaxRuleFormValues = z.infer<typeof taxRuleSchema>;
+
+// --- Inventory ---
+
+export const productSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  sku: z.string().min(2, "SKU is required"),
+  description: z.string().optional(),
+  category: z.string().min(1, "Select a category"),
+  supplierId: z.string().min(1, "Select a supplier"),
+  taxRuleId: z.string().nullable().optional(), // unused by the form for now, see note below
+  taxRate: z.coerce.number().min(0).max(100),
+  price: z.coerce.number().positive("Price must be greater than 0"),
+  stock: z.coerce.number().int().min(0),
+  lowStockThreshold: z.coerce.number().int().min(0),
+});
+export type ProductFormValues = z.infer<typeof productSchema>;
+
+// --- Suppliers ---
+
+export const supplierSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  category: z.string().min(1, "Select a category"),
+  phone: z.string().min(7, "Enter a valid phone number"),
+  email: z.string().email("Enter a valid email"),
+  address: z.string().min(5, "Address is required"),
+});
+export type SupplierFormValues = z.infer<typeof supplierSchema>;
+
+// --- Purchases ---
+
+export const purchaseLineItemSchema = z.object({
+  productId: z.string().min(1, "Select a product"),
+  quantity: z.coerce.number().int().positive("Must be at least 1"),
+  unitCost: z.coerce.number().positive("Must be greater than 0"),
+});
+
+export const purchaseSchema = z.object({
+  supplierId: z.string().min(1, "Select a supplier"),
+  date: z.string().min(1, "Date is required"),
+  status: z.enum(["pending", "received", "cancelled"]),
+  items: z.array(purchaseLineItemSchema).min(1, "Add at least one item"),
+});
+export type PurchaseFormValues = z.infer<typeof purchaseSchema>;
