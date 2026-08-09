@@ -59,19 +59,11 @@ export function SupplierCardGrid({ suppliers, isLoading, onEdit }: SupplierCardG
           </div>
 
           <div className="space-y-1.5 text-sm text-navy-500">
-            
-              href={`tel:${supplier.phone}`}
-              onClick={handleContactClick}
-              className="flex items-center gap-2 hover:text-brand-600"
-            >
+            <a href={`tel:${supplier.phone}`} onClick={handleContactClick} className="flex items-center gap-2 hover:text-brand-600">
               <Phone className="h-3.5 w-3.5 shrink-0" />
               {supplier.phone}
             </a>
-            
-              href={`mailto:${supplier.email}`}
-              onClick={handleContactClick}
-              className="flex items-center gap-2 hover:text-brand-600"
-            >
+            <a href={`mailto:${supplier.email}`} onClick={handleContactClick} className="flex items-center gap-2 hover:text-brand-600">
               <Mail className="h-3.5 w-3.5 shrink-0" />
               {supplier.email}
             </a>
