@@ -7,15 +7,16 @@ import { StatsRow } from "@/features/dashboard/components/StatsRow";
 import { AnnualPerformanceChart } from "@/features/dashboard/components/AnnualPerformanceChart";
 import { MonthlyPerformanceChart } from "@/features/dashboard/components/MonthlyPerformanceChart";
 import { ProductCategoriesGrid } from "@/features/dashboard/components/ProductCategoriesGrid";
+import { OutstandingBalancesTable } from "@/features/dashboard/components/OutstandingBalancesTable";
 
 function formatDateTime(date: Date) {
-  const datePart = date.toLocaleDateString("en-US", {
+  const datePart = date.toLocaleDateString("en-KE", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
   });
-  const timePart = date.toLocaleTimeString("en-US", {
+  const timePart = date.toLocaleTimeString("en-KE", {
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -75,6 +76,7 @@ export default function DashboardPage() {
           Selected category: {selectedCategory} — hook this up to New Sale's product filter later.
         </p>
       )}
+      <OutstandingBalancesTable />
     </div>
   );
 }

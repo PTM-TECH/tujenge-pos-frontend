@@ -1,6 +1,10 @@
-// features/dashboard/api.ts
 import api from '@/lib/api-client';
-import type { DashboardStats, DashboardPerformance, ProductCategory } from './types';
+import type {
+  DashboardStats,
+  DashboardPerformance,
+  ProductCategory,
+  OutstandingBalance,
+} from './types';
 
 export async function getDashboardStats(): Promise<DashboardStats> {
   const { data } = await api.get<DashboardStats>('/dashboard/stats');
@@ -14,5 +18,10 @@ export async function getDashboardPerformance(): Promise<DashboardPerformance> {
 
 export async function getProductCategories(): Promise<ProductCategory[]> {
   const { data } = await api.get<ProductCategory[]>('/dashboard/product-categories');
+  return data;
+}
+
+export async function getOutstandingBalances(): Promise<OutstandingBalance[]> {
+  const { data } = await api.get<OutstandingBalance[]>('/dashboard/outstanding-balances');
   return data;
 }

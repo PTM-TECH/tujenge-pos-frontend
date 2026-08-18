@@ -41,6 +41,16 @@ const PRODUCT_CATEGORIES = [
   { id: "beverages", name: "Beverages", icon: "cup-soda", productCount: 12, sold: 52, growthPct: 8 },
   { id: "tea", name: "Tea", icon: "leaf", productCount: 9, sold: 37, growthPct: 22 },
   { id: "equipment", name: "Equipment", icon: "settings", productCount: 24, sold: 11, growthPct: 3 },
+  { id: "syrups", name: "Syrups", icon: "coffee", productCount: 7, sold: 48, growthPct: 11 },
+  { id: "snacks", name: "Snacks", icon: "cup-soda", productCount: 15, sold: 62, growthPct: 6 },
+  { id: "merch", name: "Merch", icon: "settings", productCount: 6, sold: 7, growthPct: -2 },
+  { id: "accessories", name: "Accessories", icon: "leaf", productCount: 11, sold: 23, growthPct: 9 },
+];
+
+const OUTSTANDING_BALANCES = [
+  { id: "1", customerName: "Folio Coffee Ltd.", saleRef: "TXN-2831", date: "Today, 09:12", saleTotal: 284.50, paid: 150.00, balanceDue: 134.50 },
+  { id: "2", customerName: "The Roast Room", saleRef: "TXN-2819", date: "Yesterday", saleTotal: 176.25, paid: 100.00, balanceDue: 76.25 },
+  { id: "3", customerName: "Sunrise Café", saleRef: "TXN-2804", date: "Jul 13, 2026", saleTotal: 95.00, paid: 50.00, balanceDue: 45.00 },
 ];
 
 export function registerDashboardMocks(mock: MockAdapter) {
@@ -58,9 +68,12 @@ export function registerDashboardMocks(mock: MockAdapter) {
     ];
   });
 
-  // Not in the confirmed task table's two endpoints, but shown in the
-  // screenshot — mocked separately so it's easy to drop if unneeded.
   mock.onGet("/dashboard/product-categories").reply(() => {
     return [200, PRODUCT_CATEGORIES];
+  });
+
+
+  mock.onGet("/dashboard/outstanding-balances").reply(() => {
+    return [200, OUTSTANDING_BALANCES];
   });
 }

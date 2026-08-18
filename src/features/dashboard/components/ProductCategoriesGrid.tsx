@@ -18,6 +18,10 @@ const TONE_BY_CATEGORY: Record<string, string> = {
   beverages: "bg-brand-50 text-brand-600",
   tea: "bg-success-50 text-success-600",
   equipment: "bg-navy-50 text-navy-600",
+  syrups: "bg-danger-50 text-danger-600",
+  snacks: "bg-warning-100 text-warning-700",
+  merch: "bg-purple-50 text-purple-600",
+  accessories: "bg-cyan-50 text-cyan-600",
 };
 
 const DEFAULT_TONE = "bg-navy-50 text-navy-600";
@@ -75,7 +79,7 @@ export function ProductCategoriesGrid({ onSelectCategory }: ProductCategoriesGri
   if (isLoading) {
     return (
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {Array.from({ length: 4 }).map((_, i) => (
+        {Array.from({ length: 8 }).map((_, i) => (
           <Skeleton key={i} className="h-32 w-full rounded-2xl" />
         ))}
       </div>
